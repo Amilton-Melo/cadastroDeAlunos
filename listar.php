@@ -41,19 +41,23 @@ $link = mysqli_connect("192.168.0.26","amilton","admin","escola");
     while($row_usuario = mysqli_fetch_assoc($resultado)){
         extract($row_usuario);
         echo "<div class='colunas'>";
-        echo "<div class='left'><p><p style='font-size: 1.1em;font-weight: 700;color: rgb(37, 179, 218)'>Aluno</p>Matricula: ".$row_usuario['matricula']."<br>";
+        echo "<div class='left'><p><p style='font-size: 1.1em;font-weight: 700;color: rgb(37, 179, 218)'>Aluno</p>";
+        echo "Matricula: ".$row_usuario['matricula']."<br>";
         echo "Nome: ".$row_usuario['nome_alu']. "<br>";
         echo "CPF: ".$row_usuario['cpf_alu']. "<br>";
         //echo "data: ".date('d/m/y')."<br>";
         echo "Data de nascimento: ".date('d/m/Y', strtotime($row_usuario['data_nasc'])). "<br>";
         echo "E-mail: ".$row_usuario['email_alu']."<br>";
         echo "Telefone: ".$row_usuario['telefone_alu']."<br>";
-        echo "Sexo: ".$row_usuario['sexo_alu']."</p></div>";
+        echo "Sexo: ".$row_usuario['sexo_alu']."<br><br>";
+        echo "<a href='editar.php?matricula=".$row_usuario['matricula']."'>Editar</a><br>";
+        echo "</p></div>";
         echo "<div class='right'><p><p style='font-size: 1.1em;font-weight: 700;color: rgb(37, 179, 218)'>Responsável</p>Nome: ".$row_usuario['nome_resp']. "<br>";
         echo "CPF: ".$row_usuario['cpf_resp']. "<br>";
         echo "E-mail: ".$row_usuario['email_resp']."<br>";
         echo "Telefone: ".$row_usuario['telefone_resp']."<br>";
-        echo "Sexo: ".$row_usuario['sexo_resp']."</div></div></p><br>";
+        echo "Sexo: ".$row_usuario['sexo_resp']."<br>";
+        echo "</div></div></p><br>";
     }
     $sql_pg = "SELECT COUNT(matricula) AS num_result FROM aluno";
     $result_pg = mysqli_query($link, $sql_pg);
